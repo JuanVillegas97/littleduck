@@ -1,0 +1,131 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> empty
+Rule 1     empty -> <empty>
+Rule 2     expression -> exp comparation
+Rule 3     var_cte -> ID
+Rule 4     var_cte -> CTEI
+Rule 5     var_cte -> CTEF
+Rule 6     program -> PROGRAM ID SEMICOLON program_vars block
+Rule 7     program_vars -> vars
+Rule 8     program_vars -> empty
+Rule 9     block -> LEFTBRACKET statement_block RIGHTBRACKET
+Rule 10    statement_block -> statement statement_block
+Rule 11    statement_block -> empty
+Rule 12    statement -> assignment
+Rule 13    statement -> condition
+Rule 14    statement -> writing
+Rule 15    comparation -> GREATER comparation_exp
+Rule 16    comparation -> LESSER comparation_exp
+Rule 17    comparation -> DIFF comparation_exp
+Rule 18    comparation -> empty
+Rule 19    comparation_exp -> exp
+Rule 20    exp -> term operator
+Rule 21    operator -> PLUS term operator
+Rule 22    operator -> MINUS term operator
+Rule 23    operator -> empty
+Rule 24    term -> factor term_operator
+Rule 25    term_operator -> MULTIPLY factor term_operator
+Rule 26    term_operator -> DIVIDE factor term_operator
+Rule 27    term_operator -> empty
+Rule 28    factor -> LEFTPAREN expression RIGHTPAREN
+Rule 29    factor -> sign var_cte
+Rule 30    sign -> PLUS
+Rule 31    sign -> MINUS
+Rule 32    sign -> empty
+Rule 33    vars -> VAR var_id COLON type SEMICOLON vars_block
+Rule 34    var_id -> ID var_id_2
+Rule 35    var_id_2 -> COMMA ID var_id_2
+Rule 36    var_id_2 -> empty
+Rule 37    type -> INT
+Rule 38    type -> FLOAT
+Rule 39    vars_block -> var_id COLON type SEMICOLON vars_block
+Rule 40    vars_block -> empty
+Rule 41    assignment -> ID EQUALS expression SEMICOLON
+Rule 42    condition -> IF LEFTPAREN expression RIGHTPAREN block else_condition SEMICOLON
+Rule 43    else_condition -> ELSE block
+Rule 44    else_condition -> empty
+Rule 45    writing -> PRINT LEFTPAREN print_val RIGHTPAREN SEMICOLON
+Rule 46    print_val -> expression print_exp
+Rule 47    print_val -> CTESTRING print_exp
+Rule 48    print_exp -> COMMA print_val
+Rule 49    print_exp -> empty
+
+Terminals, with rules where they appear
+
+COLON                : 33 39
+COMMA                : 35 48
+CTEF                 : 5
+CTEI                 : 4
+CTESTRING            : 47
+DIFF                 : 17
+DIVIDE               : 26
+ELSE                 : 43
+EQUALS               : 41
+FLOAT                : 38
+GREATER              : 15
+ID                   : 3 6 34 35 41
+IF                   : 42
+INT                  : 37
+LEFTBRACKET          : 9
+LEFTPAREN            : 28 42 45
+LESSER               : 16
+MINUS                : 22 31
+MULTIPLY             : 25
+PLUS                 : 21 30
+PRINT                : 45
+PROGRAM              : 6
+RIGHTBRACKET         : 9
+RIGHTPAREN           : 28 42 45
+SEMICOLON            : 6 33 39 41 42 45
+VAR                  : 33
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 12
+block                : 6 42 43
+comparation          : 2
+comparation_exp      : 15 16 17
+condition            : 13
+else_condition       : 42
+empty                : 8 11 18 23 27 32 36 40 44 49 0
+exp                  : 2 19
+expression           : 28 41 42 46
+factor               : 24 25 26
+operator             : 20 21 22
+print_exp            : 46 47
+print_val            : 45 48
+program              : 
+program_vars         : 6
+sign                 : 29
+statement            : 10
+statement_block      : 9 10
+term                 : 20 21 22
+term_operator        : 24 25 26
+type                 : 33 39
+var_cte              : 29
+var_id               : 33 39
+var_id_2             : 34 35
+vars                 : 7
+vars_block           : 33 39
+writing              : 14
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . empty
+    (1) empty -> .
+
+    $end            reduce using rule 1 (empty -> .)
+
+    empty                          shift and go to state 1
+
+state 1
+
+    (0) S' -> empty .
+
+
